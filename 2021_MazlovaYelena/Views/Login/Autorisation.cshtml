@@ -1,0 +1,35 @@
+﻿
+@model _2021_MazlovaYelena.Models.LoginViewModel
+@{
+    Layout = "~/Views/Shared/LayoutLog.cshtml";
+}
+<div class="text-center">
+    <h3 class="display-5" style="position:relative; bottom: -50px">АВТОРИЗАЦИЯ</h3>
+
+</div>
+ 
+<form method="post" asp-controller="Login" asp-action="Autorisation">
+    <div class="forcard" style="position: relative; right: -205px; bottom: -65px; width: 700px; height: 350px; border-radius: 12px;">
+        <div class="container" style="position:absolute; right:-5px; top: 55px; bottom: 45px;">
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">E-mail</label><br />
+                    <input type="text" asp-for="Email" class="forinput" placeholder="Введите Ваш Email..." value="@Model?.Email" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="Email" />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Пароль</label><br />
+                    <input type="password" asp-for="Password" class="forinput" placeholder="Введите пароль..." value="@Model?.Password" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="Password" />
+                </div>
+            </div>
+
+            <br /><button type="submit" class="forbutton">Войти</button>
+        </div>
+    </div>
+</form>
+

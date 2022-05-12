@@ -1,0 +1,58 @@
+﻿@using _2021_MazlovaYelena.Models
+@model LoginRegisterViewModel
+@{
+    Layout = "~/Views/Shared/LayoutReg.cshtml";
+}
+<div class="text-center">
+    <h3 class="display-5" style="position:relative; bottom: -50px">РЕГИСТРАЦИЯ</h3>
+
+</div>
+
+<form method="post" asp-controller="Login" asp-action="Registration">
+    <div class="forcard" style="position: relative; right: -205px; bottom: -65px; width: 700px; height: 500px; border-radius: 12px;">
+        <div class="container" style="position:absolute; right:-5px; top: 35px; bottom: 45px;">
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Ваше имя</label><br />
+                    <input type="text" asp-for="Name" class="forinput" placeholder="Введите имя..." value="@Model?.Name" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="Name" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Ваш возраст</label><br />
+                    <input type="text" asp-for="Age" class="forinput" placeholder="Укажите возраст..." value="@Model?.Age" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="Age" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">E-mail</label><br />
+                    <input type="text" asp-for="Email" class="forinput" placeholder="Введите Ваш Email-адрес..." value="@Model?.Email" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="Email" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Придумайте пароль</label><br />
+                    <input type="password" asp-for="Password" class="forinput" placeholder="Введите пароль..." value="@Model?.Password" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="Password" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Повторите пароль</label><br />
+                    <input type="password" asp-for="PasswordRetry" class="forinput" placeholder="Повторите пароль" value="@Model?.PasswordRetry" />
+                    <span style="color: red; background-color: yellow; font-size: 14px;" asp-validation-for="PasswordRetry" />
+                </div>
+            </div>
+
+            <br /><button type="submit" class="forbutton">Зарегистрироваться</button>
+        </div>
+            </div>
+</form>

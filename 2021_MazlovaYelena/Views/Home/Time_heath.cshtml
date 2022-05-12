@@ -1,0 +1,110 @@
+﻿@using _2021_MazlovaYelena.Models
+@model CalcTimeModel
+@{
+
+}
+@if (User.Identity.IsAuthenticated)
+{
+  
+  <span class="badge badge-light" style="font-size: 16px; position: relative; left: 850px; bottom: 110px;">@User.Identity.Name</span>
+   
+}
+
+<div class="text-center"  style="position: relative; top: -40px;">
+    <h1 class="header">РАСЧЕТ НАГРЕВА ЦИЛИНДРА ПРИ ГРАНИЧНЫХ УСЛОВИЯХ III РОДА</h1>
+
+</div>
+
+<form method="post" asp-controller="Home" asp-action="Result_time">
+    <h4 class="text-center"  style="position: relative; top: -30px;">Исходные данные</h4>
+
+
+    <div class="forcard" style="position: relative; right: -205px; width: 700px; height: 800px; border-radius: 12px;">
+        <div class="container" style="position:absolute; right:-5px; top: 55px;">
+
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify ">Радиус цилиндра r, м</label><br />
+                    <input type="text" asp-for="r" value="@Model.r" class="forinput" placeholder="Введите значение..." name="r" required />
+                    <span asp-validation-for="r" style="color: red; background-color: yellow; font-size: 14px;" />
+                </div>
+            </div>
+
+
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Материал цилиндра</label><br />
+                    <select class="forchoise" name="material" id="FormSelect" onchange="ChangeMaterial()">
+                        <option value="Чугун" selected="@(Model.material == "Чугун")">Чугун</option>
+                        <option value="Сталь" selected="@(Model.material == "Сталь")">Сталь</option>
+                        <option value="Олово" selected="@(Model.material == "Олово")">Олово</option>
+                        <option value="Свинец" selected="@(Model.material == "Свинец")">Свинец</option>
+
+                    </select>
+                </div>
+            </div>
+            <script>
+                function ChangeMaterial() {
+                    var value = $('#FormSelect').val();
+                    location.href = '/Home/Time_heath/?material=' + value;
+                }
+            </script>
+
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Коэффициент теплопроводности материала цилиндра λм, Вт/(м*К)</label><br />
+                    <input type="text" asp-for="lamdaM" value="@Model.lamdaM" class="forinput" name="lamdaM" readonly>
+
+
+                    <label class="text-justify">Теплоемкость материала цилиндра См, Дж/(кг*К)</label><br />
+                    <input type="text" asp-for="cM" value="@Model.cM" class="forinput" name="cM" readonly>
+
+                    <label class="text-justify">Плотность материала цилиндра ρм, кг/м3</label><br />
+                    <input type="text" asp-for="roM" value="@Model.roM" class="forinput" name="roM" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Коэффициент теплоотдачи α, Вт/(м2*К)</label><br />
+                    <input type="text" asp-for="alfa" value="@Model.alfa" class="forinput" placeholder="Введите значение..." name="alfa">
+                    <span asp-validation-for="alfa" style="color: red; background-color: yellow; font-size: 14px;" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Температура печи tпеч, ⁰C </label><br />
+                    <input type="text" asp-for="t_p" value="@Model.t_p" class="forinput" placeholder="Введите значение..." name="t_p"> <br />
+                    <span asp-validation-for="t_p" style="color: red; background-color: yellow; font-size: 14px;" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Начальная температура цилиндра tнач, ⁰C</label><br />
+                    <input type="text" asp-for="t_begin" value="@Model.t_begin" class="forinput" placeholder="Введите значение..." name="t_begin"> <br />
+                    <span asp-validation-for="t_begin" style="color: red; background-color: yellow; font-size: 14px;" />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label class="text-justify">Конечная температура нагрева цилиндра tкон, ⁰C</label><br />
+                    <input type="text" asp-for="t_end" value="@Model.t_end" class="forinput" placeholder="Введите значение..." name="t_end"> <br />
+                    <span asp-validation-for="t_end" style="color: red; background-color: yellow; font-size: 14px;" /><br />
+
+
+                </div>
+            </div>
+
+           <br /> <button type="submit" class="forbutton" name="calculate">Рассчитать</button>
+
+                                   
+        </div>
+    </div>
+
+</form>

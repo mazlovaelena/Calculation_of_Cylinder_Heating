@@ -1,0 +1,50 @@
+﻿@using _2021_MazlovaYelena.Models
+@model CalcTimeModel
+@{
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <span class="badge badge-light" style="font-size: 16px; position: relative; left: 850px; bottom: 110px;">@User.Identity.Name</span>
+}
+<div class="text-center">
+    <h1 class="header" style="position: relative; top: -40px;">РАСЧЕТ НАГРЕВА ЦИЛИНДРА ПРИ ГРАНИЧНЫХ УСЛОВИЯХ III РОДА</h1>
+
+</div>
+
+
+<form method="post" asp-controller="Report" asp-action="Report_time">
+    <h4 class="text-center" style="position: relative; top: -30px;">Результаты расчета</h4>
+
+
+    <div class="forcard" style="position: relative; left: 265px; width: 600px; height: 450px; border-radius: 12px;">
+        <div class="container" style="position:absolute; right:-15px; top: 35px;">
+
+
+            <div class="row">
+                <div class="col">
+
+                    <label class="text-justify">Относительная разность температур на поверхности цилиндра Θп</label><br />
+                    <input type="text" asp-for="T_DS" value="@Model.T_DS.ToString("#,##0.0000")" class="foroutput" name="T_DS" readonly> <br />
+
+                    <label class="text-justify ">Число теплового подобия Bi</label><br />
+                    <input type="text" asp-for="Bi" value="@Model.Bi.ToString("#,##0.0")" class="foroutput" name="Bi" readonly>
+
+                    <label class="text-justify">Коэффициент температуропроводности материала а, м2/с</label><br />
+                    <input type="text" asp-for="A" value="@Model.A.ToString("#,##0.000000000")" class="foroutput" name="A" readonly>
+
+
+                    <label class="text-justify">Время нагрева цилиндра до заданной конечной температуры τ, с</label><br />
+                    <input type="text" asp-for="TH" value="@Model.TH.ToString("#,##0")" class="foroutput" name="TH" readonly>
+
+
+                    <br /><button type="submit" class="forbutton" style="position: relative; right: -35px; top: 25px;">Сформировать отчёт</button>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,128 @@
+﻿@using _2021_MazlovaYelena.Models
+@model CalcTempModel
+
+@{
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+<span class="badge badge-light"style="font-size: 16px; position: relative; left: 850px; bottom: 110px;">@User.Identity.Name</span>
+}
+
+<div class="text-center"  style="position: relative; top: -40px;">
+    <h1 class="header">РАСЧЕТ НАГРЕВА ЦИЛИНДРА ПРИ ГРАНИЧНЫХ УСЛОВИЯХ III РОДА</h1>
+
+</div>
+
+
+<form method="post" asp-controller="Report" asp-action="Report_temp">
+    <h4 class="text-center"  style="position: relative; top: -30px;">Результаты расчета</h4>
+
+
+    <div class="forcard" style="position: relative; right: 185px; width: 600px; height: 600px; border-radius: 12px;">
+        <div class="container" style="position:absolute; right:-15px; top: 45px;">
+
+
+            <div class="row">
+                <div class="col">
+
+                    <label class="text-justify ">Число теплового подобия Bi</label><br />
+                    <input type="text" asp-for="Bi" value="@Model?.Bi.ToString("#,##0.0")" class="foroutput" name="Bi" readonly>
+
+                    <label class="text-justify">Коэффициент температуропроводности материала а, м2/с</label><br />
+                    <input type="text" asp-for="A" value="@Model?.A.ToString("#,##0.000000000")" class="foroutput" name="A" readonly>
+
+
+                    <label class="text-justify">Число подобия Фурье Fo</label><br />
+                    <input type="text" asp-for="Fo" value="@Model?.Fo.ToString("#,##0.000")" class="foroutput" name="Fo" readonly>
+
+
+
+
+                    <label class="text-justify">Относительная разность температур для оси цилиндра Θс</label><br />
+                    <input type="text" asp-for="TDC" value="@Model?.TDC.ToString("#,##0.0000000")" class="foroutput" name="TDC" readonly>
+
+
+
+
+                    <label class="text-justify">Относительная разность температур для массы цилиндра Θм</label><br />
+                    <input type="text" asp-for="TDM" value="@Model?.TDM.ToString("#,##0.0000000")" class="foroutput" name="TDM" readonly>
+
+
+
+                    <label class="text-justify">Относительная разность температур на поверхности цилиндра Θп</label><br />
+                    <input type="text" asp-for="TDS" value="@Model?.TDS.ToString("#,##0.0000000")" class="foroutput" name="TDS" readonly> <br />
+
+                    <br /><button type="submit"  class="forbutton" style="position: relative; right: -35px; top: 25px;" >Сформировать отчёт</button>
+                     
+                </div>
+            </div>
+        </div>
+
+    </div>
+                <div class="container-fluid" style="position:absolute; left:800px; top: 230px; width: 800px; height: 600px">
+
+
+                    <canvas id="myChart" style="background-color: whitesmoke; width: 100%; height: 100%; border-radius: 8px; border-color: darkslategray; border-style: groove"></canvas>
+                    
+                    <script>
+                        const labels = ['Θс', 'Θм','Θп',];
+                        const data = {
+                            labels: labels,
+                            datasets: [{
+                                axis: 'y',
+                                label: 'Относительные разности температур цилиндра в конце нагрева',
+                                data: [@Model.TDC, @Model.TDM, @Model.TDS],
+
+                                backgroundColor: [
+                                    'rgb(240, 179, 132)',
+                                    'rgb(232, 118, 118)',
+                                    'rgb(242, 220, 153)',
+
+                                ],
+                                borderColor: [
+                                    'rgb(207, 104, 25)',
+                                    'rgb(145, 7, 7)',
+                                    'rgb(222, 170, 13)'
+
+                                ],
+                                borderWidth: 1,
+                                pointRadius: [3, 5, 4],
+                                tension: 0.3,
+
+                            }]
+                        };
+                        const config = {
+                             type: 'line',
+                             data: data,
+                             options: {
+                                 scales: {
+                                     x: {
+                                         display: true,
+                                         title: {
+                                             display: true,
+                                             text: 'Относительная разность температур'
+                                         }
+                                     },
+                                     y: {
+                                         beginAtZero: true,
+                                         display: true,
+                                         title: {
+                                             display: true,
+                                             text: 'Значения разности'
+                                         }
+                                     }
+                                 }
+                             
+                            },
+                        };
+
+                        var myChart = new Chart(
+                            document.getElementById('myChart'),
+                            config
+                        );
+                    </script>
+                </div>
+    
+
+</form>

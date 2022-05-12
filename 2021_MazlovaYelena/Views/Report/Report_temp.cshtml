@@ -1,0 +1,81 @@
+﻿
+@model _2021_MazlovaYelena.Models.CalcTempModel
+@{
+    Layout = "~/Views/Shared/LayoutReport.cshtml";
+}
+
+<div class="text-center">
+    <h2 class="header">РАСЧЕТ НАГРЕВА ЦИЛИНДРА ПРИ ГРАНИЧНЫХ УСЛОВИЯХ III РОДА</h2>
+    <a style="position:relative; right:700px; bottom:10px; color:dimgrey; font-size: 18px" asp-controller="Home" asp-action="Temp_heath">Назад</a>
+    <a class="btn btn-outline-secondary" style="position: relative; right: 770px; top:30px;" onclick="window.print()">Сохранить</a><br />
+</div>
+
+<form asp-controller="Report" asp-action="Report_temp">
+    <h5 class="text-center">Исходные данные</h5>
+    
+
+    <div class="container" style="position: relative; left:30px;">
+
+        <br /><label class="text-justify ">Радиус цилиндра r, м</label>
+        <input type="text" asp-for="r" value="@Model?.r" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:600px;" name="r" id="r" readonly /><br />
+
+        <br /><label class="text-justify ">Материал цилиндра</label>
+        <input type="text" asp-for="material" value="@Model?.material" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:605px;" name="material" id="material" readonly /><br />
+
+
+        <br /><label class="text-justify">Коэффициент теплопроводности материала цилиндра λм, Вт/(м*К)</label>
+        <input type="text" asp-for="lamdaM" value="@Model?.lamdaM" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:255px;" name="lamdaM" readonly><br />
+
+
+        <br /><label class="text-justify">Теплоемкость материала цилиндра См, Дж/(кг*К)</label>
+        <input type="text" asp-for="cM" value="@Model?.cM" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:390px;" name="cM" readonly><br />
+
+
+
+
+        <br /><label class="text-justify">Плотность материала цилиндра ρм, кг/м3</label>
+        <input type="text" asp-for="roM" value="@Model?.roM" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:445px;" name="roM" readonly><br />
+
+        <br /> <label class="text-justify">Коэффициент теплоотдачи α, Вт/(м2*К)</label>
+        <input type="text" asp-for="alfa" value="@Model?.alfa" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:465px;" name="alfa" readonly><br />
+
+
+
+        <br /><label class="text-justify">Время нагрева цилиндра τ, с</label>
+        <input type="text" asp-for="t" value="@Model?.t" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:544px;" name="t" readonly><br />
+
+        <br /><h5 class="text-center" style="position:relative; right:70px">Результаты расчета</h5><br />
+
+        <br /><label class="text-justify ">Число теплового подобия Bi</label>
+        <input type="text" asp-for="Bi" value="@Model?.Bi.ToString("#,##0.0")" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:545px;" name="Bi" readonly><br />
+
+        <br /> <label class="text-justify">Коэффициент температуропроводности материала а, м2/с</label>
+        <input type="text" asp-for="A" value="@Model?.A.ToString("#,##0.000000000")" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:321px;" name="A" readonly><br />
+
+
+        <br /><label class="text-justify">Число подобия Фурье Fo</label>
+        <input type="text" asp-for="Fo" value="@Model?.Fo.ToString("#,##0.000")" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:572px;" name="Fo" readonly><br />
+
+
+
+
+        <br />  <label class="text-justify">Относительная разность температур для оси цилиндра Θс</label>
+        <input type="text" asp-for="TDC" value="@Model?.TDC.ToString("#,##0.0000000")" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:316px;" name="TDC" readonly><br />
+
+
+
+
+        <br /><label class="text-justify">Относительная разность температур для массы цилиндра Θм</label>
+        <input type="text" asp-for="TDM" value="@Model?.TDM.ToString("#,##0.0000000")" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:294px;" name="TDM" readonly><br />
+
+
+
+        <br /><label class="text-justify">Относительная разность температур на поверхности цилиндра Θп</label>
+        <input type="text" asp-for="TDS" value="@Model?.TDS.ToString("#,##0.0000000")" class="border-top-0 border-left-0 border-right-0" style="position:relative; left:250px;" name="TDS" readonly> <br />
+
+
+
+    </div>
+
+
+</form>

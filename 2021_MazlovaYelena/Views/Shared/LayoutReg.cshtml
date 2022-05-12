@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Регистрация</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="/css/factory.ico" sizes="64x64" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <img src="~/css/waste-water.png" width="50" height="50" class="d-inline-block align-middle" alt="">
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item" style="position:relative; left: 955px; font-size: 18px;">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Login" asp-action="Autorisation">Войти</a>
+                        </li>
+
+                        <li class="nav-item" style="position: relative; left: 605px; font-size: 18px">
+                            <a class="nav-link text-light" href="~/Rukovodstvo.pdf" target="_blank">Руководство пользователя</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top-0 footer">
+        <div class="container">
+            <p style="position:relative; right: 255px;">
+                Сайт разработан в рамках курсового проекта |
+                Разработчик: <a style="color: lightslategrey" href="https://vk.com/bulossssshhhhhka">Мазлова Елена Юрьевна</a> |
+                По вопросам: parkleehyun2001@gmail.com
+            </p>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validatee.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
